@@ -1,12 +1,22 @@
 * {
     list-style: none;
     text-decoration: none;
+    margin: 0;
+    padding: 0;
 }
 
 :root {
     --border-radius-min: 0.10rem;
     --border-radius-mid: 0.25rem;
     --border-radius-max: 0.50rem;
+
+    --bg-sky-dark: #0D141F;
+    --bg-sky-deem: #B0B4BA;
+    --text-sky: #75C7F0;
+
+    --bg-slate-dark: #111113;
+    --bg-slate-deem: #18191B;
+    --text-slate: #B0B4BA;
 }
 
 nav {
@@ -25,14 +35,18 @@ nav {
 
 #nav-items-container {
     position: fixed;
-    top: 3rem;
+    top: 0;
     right: -100%;
-    background-color: red;
+    height: 100%;
+    width: 50%;
+    color: var(--text-sky);
+    background-color: var(--bg-sky-deem);
     border-radius: var(--border-radius-mid);
     font-size: large;
     padding: 1rem 0 1rem 0;
     transition: all;
-    transition-duration: 0.5s;
+    transition-duration: 0.25s;
+    z-index: 10;
 }
 
 #nav-items-container>li>a {
@@ -42,6 +56,17 @@ nav {
 
 #nav-items-container>li>a:hover {
     background-color: aquamarine;
+}
+
+#overlay {
+    display: none;
+    inset: 0;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 9;
+    background-color: rgba(100, 100, 100, 0.1);
+    backdrop-filter: blur(5px);
 }
 
 #cross-icon {
@@ -56,8 +81,13 @@ nav {
     display: none;
 }
 
+#nav-toggler:checked~#overlay {
+    display: block;
+}
+
 #nav-toggler:checked~#nav-items-container {
-    right: 0.5rem;
+    /* right: 0.5rem; */
+    right: 0;
 }
 
 @media screen and (min-width: 640px) {
@@ -71,7 +101,8 @@ nav {
     }
 
     #menu-icon,
-    #cross-icon {
+    #cross-icon,
+    #overlay {
         display: none;
     }
 }
